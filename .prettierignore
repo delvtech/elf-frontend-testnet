@@ -1,0 +1,12 @@
+*.json
+*.js
+*.md
+*.yaml
+lib/
+src/contracts/balancer-core-v2/
+src/types/
+coverage/
+artifacts/
+cache/
+elf-contracts/
+node_modules/
