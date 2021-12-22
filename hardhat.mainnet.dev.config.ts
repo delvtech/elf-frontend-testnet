@@ -1,6 +1,7 @@
 import "@nomiclabs/hardhat-waffle";
-import "@typechain/hardhat";
+import "hardhat-tracer";
 import "module-alias/register";
+import "@typechain/hardhat";
 
 import { HardhatUserConfig, task, types } from "hardhat/config";
 
@@ -29,12 +30,33 @@ task("autoMine", "Mine blocks on every transaction automatically").setAction(
 );
 
 const config: HardhatUserConfig = {
+  paths: {
+    sources: "src",
+  },
+  solidity: {
+    compilers: [
+      {
+        version: "0.5.12",
+      },
+      {
+        version: "0.7.1",
+      },
+      {
+        version: "0.8.0",
+      },
+    ],
+  },
+  typechain: {
+    outDir: "src/types",
+    target: "ethers-v5",
+  },
   networks: {
     hardhat: {
       forking: {
         url: "https://eth-mainnet.alchemyapi.io/v2/kwjMP-X-Vajdk1ItCfU-56Uaq1wwhamK",
         blockNumber: 13583600,
       },
+      accounts: { count: 5 },
     },
   },
 };
