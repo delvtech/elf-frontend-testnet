@@ -2,9 +2,8 @@ import "@nomiclabs/hardhat-waffle";
 // uncomment this to compile vyper contracts
 // import "@nomiclabs/hardhat-vyper";
 import "@typechain/hardhat";
-import "module-alias/register";
-
 import { HardhatUserConfig, task, types } from "hardhat/config";
+import "module-alias/register";
 
 task("intervalMining", "Mine blocks on an interval")
   .addOptionalParam(

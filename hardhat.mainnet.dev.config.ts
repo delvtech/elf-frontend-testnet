@@ -3,7 +3,14 @@ import "hardhat-tracer";
 import "module-alias/register";
 import "@typechain/hardhat";
 
-import { HardhatUserConfig, task, types } from "hardhat/config";
+import {
+  HardhatUserConfig,
+  task,
+  types,
+  extendEnvironment,
+} from "hardhat/config";
+
+import manipulateTokenBalances from "./src/scripts/manipulateTokenBalances";
 
 task("intervalMining", "Mine blocks on an interval")
   .addOptionalParam(
@@ -28,6 +35,19 @@ task("autoMine", "Mine blocks on every transaction automatically").setAction(
     await hre.ethers.provider.send("evm_setIntervalMining", [0]);
   }
 );
+
+task(
+  "manipulateTokenBalances",
+  "Sets storage slots on an array of ERC20 functions"
+).setAction(async (_, hre) => {
+  const [, { address }] = await hre.ethers.getSigners();
+  await manipulateTokenBalances(address, hre.ethers.provider);
+});
+
+extendEnvironment((hre) => {
+  //hre.run("intervalMining");
+  hre.run("manipulateTokenBalances");
+});
 
 const config: HardhatUserConfig = {
   paths: {
