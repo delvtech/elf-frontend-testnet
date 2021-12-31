@@ -1,9 +1,16 @@
 import "@nomiclabs/hardhat-waffle";
-// uncomment this to compile vyper contracts
-// import "@nomiclabs/hardhat-vyper";
-import "@typechain/hardhat";
-import { HardhatUserConfig, task, types } from "hardhat/config";
+import "hardhat-tracer";
 import "module-alias/register";
+import "@typechain/hardhat";
+
+import {
+  HardhatUserConfig,
+  task,
+  types,
+  extendEnvironment,
+} from "hardhat/config";
+
+import manipulateTokenBalances from "./src/scripts/manipulateTokenBalances";
 
 task("intervalMining", "Mine blocks on an interval")
   .addOptionalParam(
@@ -29,18 +36,22 @@ task("autoMine", "Mine blocks on every transaction automatically").setAction(
   }
 );
 
+task(
+  "manipulateTokenBalances",
+  "Sets storage slots on an array of ERC20 functions"
+).setAction(async (_, hre) => {
+  const [, { address }] = await hre.ethers.getSigners();
+  await manipulateTokenBalances(address, hre.ethers.provider);
+});
+
+extendEnvironment((hre) => {
+  hre.run("manipulateTokenBalances");
+});
+
 const config: HardhatUserConfig = {
   paths: {
     sources: "src",
-    tests: "src/tests",
   },
-  // uncomment this to compile vyper contracts.  the version in the file must match.
-  // vyper: {
-  // CRVPool
-  // version: "0.2.12",
-  // CRVToken
-  //   version: "0.2.8",
-  // },
   solidity: {
     compilers: [
       {
@@ -58,18 +69,13 @@ const config: HardhatUserConfig = {
     outDir: "src/types",
     target: "ethers-v5",
   },
-
   networks: {
     hardhat: {
-      gas: 1000000000000000000,
-      blockGasLimit: 0x1fffffffffffff,
-      allowUnlimitedContractSize: true,
-    },
-    mainnet: {
-      url: `https://eth-mainnet.alchemyapi.io/v2/${process.env.ALCHEMY_MAINNET_API_KEY}`,
-    },
-    goerli: {
-      url: `https://eth-goerli.alchemyapi.io/v2/${process.env.ALCHEMY_GOERLI_API_KEY}`,
+      forking: {
+        url: "https://eth-mainnet.alchemyapi.io/v2/kwjMP-X-Vajdk1ItCfU-56Uaq1wwhamK",
+        blockNumber: 13880010, // update liberally to CURRENT_BLOCK - 1 DAY
+      },
+      accounts: { count: 5 },
     },
   },
 };
