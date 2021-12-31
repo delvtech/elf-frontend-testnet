@@ -45,7 +45,6 @@ task(
 });
 
 extendEnvironment((hre) => {
-  //hre.run("intervalMining");
   hre.run("manipulateTokenBalances");
 });
 
@@ -74,7 +73,7 @@ const config: HardhatUserConfig = {
     hardhat: {
       forking: {
         url: "https://eth-mainnet.alchemyapi.io/v2/kwjMP-X-Vajdk1ItCfU-56Uaq1wwhamK",
-        blockNumber: 13583600,
+        blockNumber: 13880010, // update liberally to CURRENT_BLOCK - 1 DAY
       },
       accounts: { count: 5 },
     },
