@@ -71,7 +71,7 @@ export default async function manipulateTokenBalances(
           "USDC",
           "MIM",
           "LUSD",
-          "3crv",
+          "3CRV",
           "alUSD",
           "USDT",
           "WETH",
@@ -84,6 +84,7 @@ export default async function manipulateTokenBalances(
           "crvTricrypto",
           "steCRV",
           "eursCRV",
+          "WBTC",
           // "ETH",
           // "sEUR",
         ].some((t) => t === token.symbol)
