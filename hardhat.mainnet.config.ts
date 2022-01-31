@@ -1,7 +1,6 @@
 import "@nomiclabs/hardhat-waffle";
 // uncomment this to compile vyper contracts
 // import "@nomiclabs/hardhat-vyper";
-import "@typechain/hardhat";
 import "module-alias/register";
 
 import { HardhatUserConfig, task, types } from "hardhat/config";
@@ -55,17 +54,11 @@ const config: HardhatUserConfig = {
       },
     ],
   },
-  typechain: {
-    outDir: "src/types",
-    target: "ethers-v5",
-  },
-
   networks: {
     hardhat: {
       allowUnlimitedContractSize: true,
       forking: {
-        url:
-          "https://eth-mainnet.alchemyapi.io/v2/kwjMP-X-Vajdk1ItCfU-56Uaq1wwhamK",
+        url: "https://eth-mainnet.alchemyapi.io/v2/kwjMP-X-Vajdk1ItCfU-56Uaq1wwhamK",
         blockNumber: 12706268,
       },
     },
