@@ -14,6 +14,7 @@
     "prettier": "^2.4.1"
   },
   "devDependencies": {
+    "@elementfi/tokenlist": "^2.0.0",
     "@ethersproject/providers": "^5.5.1",
     "@nomiclabs/hardhat-ethers": "^2.0.3",
     "@nomiclabs/hardhat-vyper": "^2.0.1",
@@ -43,8 +44,6 @@
   },
   "scripts": {
     "build": "rm -rf artifacts src/types && npx hardhat compile",
-    "build:tokenlist-goerli": "npx hardhat run src/tokenlist/goerli.ts --network goerli --no-compile",
-    "build:tokenlist-mainnet": "npx hardhat run src/tokenlist/mainnet.ts --network mainnet --no-compile",
     "build:tokenlist-testnet": "npx hardhat run src/tokenlist/localhost.ts --network localhost --no-compile",
     "deploy-contracts": "npx hardhat run src/scripts/deployLocalTestnet.ts --network localhost --no-compile && npm run build:tokenlist-testnet",
     "deploy-local-mainnet": "npx hardhat run src/scripts/deployLocalMainnet.ts --network localhost --no-compile --config hardhat.mainnet.config.ts",
