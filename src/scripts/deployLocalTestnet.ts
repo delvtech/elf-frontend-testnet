@@ -335,7 +335,8 @@ async function main() {
 
       secondWethTrancheContract.address,
       secondWethFytPoolContract.address,
-      secondWethYcPoolContract.address,
+      // don't add this yieldpool to the safelist so we can test hiding UI when the pool doesn't exist
+      // secondWethYcPoolContract.address,
 
       expiredWethTrancheContract.address,
       expiredWethFytPoolContract.address,
