@@ -3,20 +3,19 @@ import zip from "lodash.zip";
 import { getTokenSymbolMulti } from "src/tokenlist/erc20";
 import {
   PrincipalTokenInfo,
-  TokenListTag,
+  TokenTag,
   YieldTokenInfo,
-} from "src/tokenlist/types";
+} from "@elementfi/tokenlist";
 import { ERC20__factory } from "src/types/factories/ERC20__factory";
 import { InterestToken__factory } from "src/types/factories/InterestToken__factory";
 import { Tranche__factory } from "src/types/factories/Tranche__factory";
 import { InterestToken } from "src/types/InterestToken";
-import { Tranche } from "src/types/Tranche";
 
 let hardhatSymbolOverrides = {};
 if (process.env.NODE_ENV === "development") {
   hardhatSymbolOverrides = require("src/addresses/testnet.symbolOverrides.json");
 }
-export const provider = hre.ethers.provider;
+export const { provider } = hre.ethers;
 
 const GOERLI_CHAIN_ID = 5;
 const HARDHAT_CHAIN_ID = 31337;
@@ -66,7 +65,7 @@ export async function getYieldTokenInfos(
     interestTokens.map((interestToken) => interestToken.decimals())
   );
 
-  const yieldTokensList: YieldTokenInfo[] = zip<any>(
+  const yieldTokensList: YieldTokenInfo[] = zip<string | number>(
     interestTokenAddresses,
     yieldTokenSymbols,
     yieldTokenNames,
@@ -95,7 +94,7 @@ export async function getYieldTokenInfos(
           underlying: underlying as string,
           unlockTimestamp: unlockTimestamp as number,
         },
-        tags: [TokenListTag.YIELD],
+        tags: [TokenTag.YIELD],
         // TODO: What logo do we want to show for interest tokens?
         // logoURI: ""
       };

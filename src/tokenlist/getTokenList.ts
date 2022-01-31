@@ -1,4 +1,3 @@
-import { TokenList } from "@uniswap/token-lists";
 import fs from "fs";
 import hre from "hardhat";
 
@@ -13,14 +12,14 @@ import { getYieldPoolTokenInfos } from "src/tokenlist/weightedPools";
 
 import { getYieldTokenInfos } from "./yieldTokens";
 import { getPrincipalTokenInfos } from "./principalTokens";
-import { tags } from "./tags";
 import {
   ConvergentPoolFactory__factory,
   Vault__factory,
   WeightedPoolFactory__factory,
 } from "src/types";
+import { TokenList, tags } from "@elementfi/tokenlist";
 
-const provider = hre.ethers.provider;
+const { provider } = hre.ethers;
 
 export async function getTokenList(
   addressesJson: AddressesJsonFile,
@@ -43,7 +42,7 @@ export async function getTokenList(
       crvtricryptoAddress,
       stecrvAddress,
 
-      wbtcAddress,
+      // wbtcAddress,
       "alusd3crv-fAddress": crvalusdAddress,
       "lusd3crv-fAddress": crvlusdAddress,
       // "mim-3lp3crv-fAddress": string;

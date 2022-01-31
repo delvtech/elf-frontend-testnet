@@ -1,22 +1,20 @@
-import { TokenInfo } from "@uniswap/token-lists";
-import hre from "hardhat";
-import zip from "lodash.zip";
-
-import { ERC20 } from "src/types/ERC20";
-
 import {
   AssetProxyTokenInfo,
-  TokenListTag,
+  TokenInfo,
+  TokenTag,
   VaultTokenInfo,
-} from "src/tokenlist/types";
+} from "@elementfi/tokenlist";
+import hre from "hardhat";
+import zip from "lodash.zip";
+import { ERC20 } from "src/types/ERC20";
 import { TestYVault__factory } from "src/types/factories/TestYVault__factory";
 import {
+  getTokenDecimalsMulti,
   getTokenNameMulti,
   getTokenSymbolMulti,
-  getTokenDecimalsMulti,
 } from "./erc20";
 
-export const provider = hre.ethers.provider;
+export const { provider } = hre.ethers;
 
 const GOERLI_CHAIN_ID = 5;
 
@@ -39,35 +37,31 @@ export async function getVaultTokenInfos(
   const vaults = vaultAddresses.map((vaultAddress) =>
     TestYVault__factory.connect(vaultAddress, provider)
   );
-  const vaultNames = await getTokenNameMulti((vaults as unknown) as ERC20[]);
+  const vaultNames = await getTokenNameMulti(vaults as unknown as ERC20[]);
 
-  const vaultSymbols = await getTokenSymbolMulti(
-    (vaults as unknown) as ERC20[]
-  );
+  const vaultSymbols = await getTokenSymbolMulti(vaults as unknown as ERC20[]);
 
   const symbols = getVaultSymbolMulti(chainId, vaultAddresses, vaultSymbols);
 
-  const decimals = await getTokenDecimalsMulti((vaults as unknown) as ERC20[]);
+  const decimals = await getTokenDecimalsMulti(vaults as unknown as ERC20[]);
 
   const vaultTokensList: TokenInfo[] = zip(
     vaultAddresses,
     symbols,
     vaultNames,
     decimals
-  ).map(
-    ([address, symbol, name, decimal]): VaultTokenInfo => {
-      return {
-        chainId,
-        address: address as string,
-        symbol: symbol as string,
-        decimals: decimal as number,
-        name: name as string,
-        tags: [TokenListTag.VAULT],
-        // TODO: What logo do we want to show for base assets?
-        // logoURI: ""
-      };
-    }
-  );
+  ).map(([address, symbol, name, decimal]): VaultTokenInfo => {
+    return {
+      chainId,
+      address: address as string,
+      symbol: symbol as string,
+      decimals: decimal as number,
+      name: name as string,
+      tags: [TokenTag.VAULT],
+      // TODO: What logo do we want to show for base assets?
+      // logoURI: ""
+    };
+  });
 
   return vaultTokensList;
 }
