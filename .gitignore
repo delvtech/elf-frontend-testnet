@@ -6,8 +6,5 @@ artifacts
 efi-frontend
 elf-contracts
 src/types
-src/tokenlist/testnet.tokenlist.json
-src/addresses/testnet.addresses.json
-src/addresses/testnet.symbolOverrides.json
 all-addresses.json
 .env.local

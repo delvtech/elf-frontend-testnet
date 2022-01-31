@@ -1,0 +1,453 @@
+{
+  "name": "Testnet token list",
+  "logoURI": "https://element.fi/logo.svg",
+  "tags": {
+    "underlying": {
+      "name": "Underlying asset",
+      "description": "The base asset of a principal or yield token"
+    },
+    "eP": {
+      "name": "Principal token",
+      "description": "Token that represents a deposit of principal into a yield position"
+    },
+    "eY": {
+      "name": "Yield token",
+      "description": "Token that represents the yield on a deposit into a yield position"
+    },
+    "ccpool": {
+      "name": "ConvergentCurve pool",
+      "description": "Token that represents the balancer pool for Principal tokens"
+    },
+    "wpool": {
+      "name": "Weighted pool",
+      "description": "Token that represents the balancer pool for Yield tokens"
+    },
+    "assetproxy": {
+      "name": "Vault asset proxy",
+      "description": "Token that wraps a yield position, ie: Yearn vault asset proxy"
+    },
+    "vault": {
+      "name": "Vault",
+      "description": "The yield position, ie: Yearn yvcrvLUSD"
+    }
+  },
+  "timestamp": "2022-01-31T14:13:41.153Z",
+  "version": {
+    "major": 0,
+    "minor": 0,
+    "patch": 0
+  },
+  "tokens": [
+    {
+      "chainId": 31337,
+      "address": "0x9bAaB117304f7D6517048e371025dB8f89a8DbE5",
+      "symbol": "WETH",
+      "decimals": 18,
+      "name": "Wrapped Ether",
+      "tags": [
+        "underlying"
+      ]
+    },
+    {
+      "chainId": 31337,
+      "address": "0x7ef8E99980Da5bcEDcF7C10f41E55f759F6A174B",
+      "symbol": "USDC",
+      "decimals": 6,
+      "name": "USD Coin",
+      "tags": [
+        "underlying"
+      ]
+    },
+    {
+      "chainId": 31337,
+      "address": "0xef11D1c2aA48826D4c41e54ab82D1Ff5Ad8A64Ca",
+      "symbol": "DAI",
+      "decimals": 18,
+      "name": "DAI stable coin",
+      "tags": [
+        "underlying"
+      ]
+    },
+    {
+      "chainId": 31337,
+      "address": "0xCD8a1C3ba11CF5ECfa6267617243239504a98d90",
+      "symbol": "ELFyWETH",
+      "decimals": 18,
+      "name": "ELF - WETH Yearn Vault",
+      "tags": [
+        "assetproxy"
+      ],
+      "extensions": {
+        "vault": "0x1291Be112d480055DaFd8a610b7d1e203891C274"
+      }
+    },
+    {
+      "chainId": 31337,
+      "address": "0x7bc06c482DEAd17c0e297aFbC32f6e63d3846650",
+      "symbol": "ELFyUSDC",
+      "decimals": 6,
+      "name": "ELF - USDC Yearn Vault",
+      "tags": [
+        "assetproxy"
+      ],
+      "extensions": {
+        "vault": "0x82e01223d51Eb87e16A03E24687EDF0F294da6f1"
+      }
+    },
+    {
+      "chainId": 31337,
+      "address": "0x1291Be112d480055DaFd8a610b7d1e203891C274",
+      "symbol": "yToken",
+      "decimals": 18,
+      "name": "test ytoken",
+      "tags": [
+        "vault"
+      ]
+    },
+    {
+      "chainId": 31337,
+      "address": "0x82e01223d51Eb87e16A03E24687EDF0F294da6f1",
+      "symbol": "yToken",
+      "decimals": 6,
+      "name": "test ytoken",
+      "tags": [
+        "vault"
+      ]
+    },
+    {
+      "chainId": 31337,
+      "address": "0xC2EeB8252190443E0b2dE881938e06E95DA28cCC",
+      "symbol": "ePELFyWETH-01AUG22",
+      "decimals": 18,
+      "extensions": {
+        "underlying": "0x9bAaB117304f7D6517048e371025dB8f89a8DbE5",
+        "position": "0xCD8a1C3ba11CF5ECfa6267617243239504a98d90",
+        "interestToken": "0xc95ff0608561b6bA084c78D14f09e9826190f968",
+        "unlockTimestamp": 1659363190,
+        "createdAtTimestamp": 1624665013
+      },
+      "name": "ETH Principal Token",
+      "tags": [
+        "eP"
+      ]
+    },
+    {
+      "chainId": 31337,
+      "address": "0x3D7Bd77eFAB93E744b623f46B901C597973122Ee",
+      "symbol": "ePELFyWETH-01MAY22",
+      "decimals": 18,
+      "extensions": {
+        "underlying": "0x9bAaB117304f7D6517048e371025dB8f89a8DbE5",
+        "position": "0xCD8a1C3ba11CF5ECfa6267617243239504a98d90",
+        "interestToken": "0xbD89b434dD59562756ED9B14B0bec5E71f3c6876",
+        "unlockTimestamp": 1651414395,
+        "createdAtTimestamp": 1624665025
+      },
+      "name": "ETH Principal Token",
+      "tags": [
+        "eP"
+      ]
+    },
+    {
+      "chainId": 31337,
+      "address": "0xB62DB4Cd93092ef70E4C7437031CBE74cF7851eE",
+      "symbol": "ePELFyWETH-31JAN22",
+      "decimals": 18,
+      "extensions": {
+        "underlying": "0x9bAaB117304f7D6517048e371025dB8f89a8DbE5",
+        "position": "0xCD8a1C3ba11CF5ECfa6267617243239504a98d90",
+        "interestToken": "0xB01718DCF2124e3a9217aC0dEc176a72733d2589",
+        "unlockTimestamp": 1643638519,
+        "createdAtTimestamp": 1624665037
+      },
+      "name": "ETH Principal Token",
+      "tags": [
+        "eP"
+      ]
+    },
+    {
+      "chainId": 31337,
+      "address": "0xe04E89497A049680F9cC0953c752ab93eE0f37fA",
+      "symbol": "ePELFyUSDC-01AUG22",
+      "decimals": 6,
+      "extensions": {
+        "underlying": "0x7ef8E99980Da5bcEDcF7C10f41E55f759F6A174B",
+        "position": "0x7bc06c482DEAd17c0e297aFbC32f6e63d3846650",
+        "interestToken": "0x6E7A80364c02f6DA5A656a753ef77d9AF1aEFdCE",
+        "unlockTimestamp": 1659363204,
+        "createdAtTimestamp": 1624665055
+      },
+      "name": "USDC Principal Token",
+      "tags": [
+        "eP"
+      ]
+    },
+    {
+      "chainId": 31337,
+      "address": "0x9C533ca41354958d3829f37d83299d43291dB5E9",
+      "symbol": "ePELFyUSDC-31JAN22",
+      "decimals": 6,
+      "extensions": {
+        "underlying": "0x7ef8E99980Da5bcEDcF7C10f41E55f759F6A174B",
+        "position": "0x7bc06c482DEAd17c0e297aFbC32f6e63d3846650",
+        "interestToken": "0xa2D02d5ef64883cE9DECE061Aa56eDfd0A32219a",
+        "unlockTimestamp": 1643638529,
+        "createdAtTimestamp": 1624665067
+      },
+      "name": "USDC Principal Token",
+      "tags": [
+        "eP"
+      ]
+    },
+    {
+      "chainId": 31337,
+      "address": "0xc95ff0608561b6bA084c78D14f09e9826190f968",
+      "symbol": "eYELFyWETH-01AUG22",
+      "decimals": 18,
+      "name": "ETH Yield Token",
+      "extensions": {
+        "tranche": "0xC2EeB8252190443E0b2dE881938e06E95DA28cCC",
+        "underlying": "0x9bAaB117304f7D6517048e371025dB8f89a8DbE5",
+        "unlockTimestamp": 1659363190
+      },
+      "tags": [
+        "eY"
+      ]
+    },
+    {
+      "chainId": 31337,
+      "address": "0xbD89b434dD59562756ED9B14B0bec5E71f3c6876",
+      "symbol": "eYELFyWETH-01MAY22",
+      "decimals": 18,
+      "name": "ETH Yield Token",
+      "extensions": {
+        "tranche": "0x3D7Bd77eFAB93E744b623f46B901C597973122Ee",
+        "underlying": "0x9bAaB117304f7D6517048e371025dB8f89a8DbE5",
+        "unlockTimestamp": 1651414395
+      },
+      "tags": [
+        "eY"
+      ]
+    },
+    {
+      "chainId": 31337,
+      "address": "0xB01718DCF2124e3a9217aC0dEc176a72733d2589",
+      "symbol": "eYELFyWETH-31JAN22",
+      "decimals": 18,
+      "name": "ETH Yield Token",
+      "extensions": {
+        "tranche": "0xB62DB4Cd93092ef70E4C7437031CBE74cF7851eE",
+        "underlying": "0x9bAaB117304f7D6517048e371025dB8f89a8DbE5",
+        "unlockTimestamp": 1643638519
+      },
+      "tags": [
+        "eY"
+      ]
+    },
+    {
+      "chainId": 31337,
+      "address": "0x6E7A80364c02f6DA5A656a753ef77d9AF1aEFdCE",
+      "symbol": "eYELFyUSDC-01AUG22",
+      "decimals": 6,
+      "name": "USDC Yield Token",
+      "extensions": {
+        "tranche": "0xe04E89497A049680F9cC0953c752ab93eE0f37fA",
+        "underlying": "0x7ef8E99980Da5bcEDcF7C10f41E55f759F6A174B",
+        "unlockTimestamp": 1659363204
+      },
+      "tags": [
+        "eY"
+      ]
+    },
+    {
+      "chainId": 31337,
+      "address": "0xa2D02d5ef64883cE9DECE061Aa56eDfd0A32219a",
+      "symbol": "eYELFyUSDC-31JAN22",
+      "decimals": 6,
+      "name": "USDC Yield Token",
+      "extensions": {
+        "tranche": "0x9C533ca41354958d3829f37d83299d43291dB5E9",
+        "underlying": "0x7ef8E99980Da5bcEDcF7C10f41E55f759F6A174B",
+        "unlockTimestamp": 1643638529
+      },
+      "tags": [
+        "eY"
+      ]
+    },
+    {
+      "chainId": 31337,
+      "address": "0xf7b407BD806B9943C1b2281271B27DC3F3baE694",
+      "symbol": "WETH-fyWETH",
+      "decimals": 18,
+      "extensions": {
+        "bond": "0xC2EeB8252190443E0b2dE881938e06E95DA28cCC",
+        "underlying": "0x9bAaB117304f7D6517048e371025dB8f89a8DbE5",
+        "poolId": "0xf7b407bd806b9943c1b2281271b27dc3f3bae694000200000000000000000000",
+        "unitSeconds": 315360000,
+        "expiration": 1659363192,
+        "createdAtTimestamp": 1624665014
+      },
+      "name": "Element WETH - fyWETH",
+      "tags": [
+        "ccpool"
+      ]
+    },
+    {
+      "chainId": 31337,
+      "address": "0xc9A9DCE750f11c2c04a29CFbB7eD83576050a3F5",
+      "symbol": "WETH-fyWETH",
+      "decimals": 18,
+      "extensions": {
+        "bond": "0x3D7Bd77eFAB93E744b623f46B901C597973122Ee",
+        "underlying": "0x9bAaB117304f7D6517048e371025dB8f89a8DbE5",
+        "poolId": "0xc9a9dce750f11c2c04a29cfbb7ed83576050a3f5000200000000000000000002",
+        "unitSeconds": 315360000,
+        "expiration": 1651414397,
+        "createdAtTimestamp": 1624665026
+      },
+      "name": "Element WETH - fyWETH",
+      "tags": [
+        "ccpool"
+      ]
+    },
+    {
+      "chainId": 31337,
+      "address": "0x4dEad3189b0D497968412ADF0DC960cdD8048808",
+      "symbol": "WETH-fyWETH",
+      "decimals": 18,
+      "extensions": {
+        "bond": "0xB62DB4Cd93092ef70E4C7437031CBE74cF7851eE",
+        "underlying": "0x9bAaB117304f7D6517048e371025dB8f89a8DbE5",
+        "poolId": "0x4dead3189b0d497968412adf0dc960cdd8048808000200000000000000000004",
+        "unitSeconds": 315360000,
+        "expiration": 1643638521,
+        "createdAtTimestamp": 1624665038
+      },
+      "name": "Element WETH - fyWETH",
+      "tags": [
+        "ccpool"
+      ]
+    },
+    {
+      "chainId": 31337,
+      "address": "0xa0372fAAfE21A4E4e1D0fDc62D1f7Be957c08cB2",
+      "symbol": "USDC-fyUSDC",
+      "decimals": 18,
+      "extensions": {
+        "bond": "0xe04E89497A049680F9cC0953c752ab93eE0f37fA",
+        "underlying": "0x7ef8E99980Da5bcEDcF7C10f41E55f759F6A174B",
+        "poolId": "0xa0372faafe21a4e4e1d0fdc62d1f7be957c08cb2000200000000000000000006",
+        "unitSeconds": 315360000,
+        "expiration": 1659363206,
+        "createdAtTimestamp": 1624665056
+      },
+      "name": "Element USDC - fyUSDC",
+      "tags": [
+        "ccpool"
+      ]
+    },
+    {
+      "chainId": 31337,
+      "address": "0xdD8670CCb655041B202422A6706F18c71117f9d6",
+      "symbol": "USDC-fyUSDC",
+      "decimals": 18,
+      "extensions": {
+        "bond": "0x9C533ca41354958d3829f37d83299d43291dB5E9",
+        "underlying": "0x7ef8E99980Da5bcEDcF7C10f41E55f759F6A174B",
+        "poolId": "0xdd8670ccb655041b202422a6706f18c71117f9d6000200000000000000000008",
+        "unitSeconds": 315360000,
+        "expiration": 1643638530,
+        "createdAtTimestamp": 1624665068
+      },
+      "name": "Element USDC - fyUSDC",
+      "tags": [
+        "ccpool"
+      ]
+    },
+    {
+      "chainId": 31337,
+      "address": "0x3E69aeCb6a5abAc2D87d6707649E2fB0173ee2Da",
+      "symbol": "WETH-eyWETH",
+      "decimals": 18,
+      "extensions": {
+        "poolId": "0x3e69aecb6a5abac2d87d6707649e2fb0173ee2da000200000000000000000001",
+        "underlying": "0x9bAaB117304f7D6517048e371025dB8f89a8DbE5",
+        "interestToken": "0xc95ff0608561b6bA084c78D14f09e9826190f968",
+        "createdAtTimestamp": 1624665022,
+        "expiration": 1659363190
+      },
+      "name": "Element WETH - eyWETH",
+      "tags": [
+        "wpool"
+      ]
+    },
+    {
+      "chainId": 31337,
+      "address": "0x0AdECc0079Cab72DDe413b2634a811C15D2D3c21",
+      "symbol": "WETH-eyWETH",
+      "decimals": 18,
+      "extensions": {
+        "poolId": "0x0adecc0079cab72dde413b2634a811c15d2d3c21000200000000000000000003",
+        "underlying": "0x9bAaB117304f7D6517048e371025dB8f89a8DbE5",
+        "interestToken": "0xbD89b434dD59562756ED9B14B0bec5E71f3c6876",
+        "createdAtTimestamp": 1624665034,
+        "expiration": 1651414395
+      },
+      "name": "Element WETH - eyWETH",
+      "tags": [
+        "wpool"
+      ]
+    },
+    {
+      "chainId": 31337,
+      "address": "0x0a52519F97941C942752eE44156A6EdeCA156Cdd",
+      "symbol": "WETH-eyWETH",
+      "decimals": 18,
+      "extensions": {
+        "poolId": "0x0a52519f97941c942752ee44156a6edeca156cdd000200000000000000000005",
+        "underlying": "0x9bAaB117304f7D6517048e371025dB8f89a8DbE5",
+        "interestToken": "0xB01718DCF2124e3a9217aC0dEc176a72733d2589",
+        "createdAtTimestamp": 1624665046,
+        "expiration": 1643638519
+      },
+      "name": "Element WETH - eyWETH",
+      "tags": [
+        "wpool"
+      ]
+    },
+    {
+      "chainId": 31337,
+      "address": "0x74bE95FF2Bb67B49ca168ec5f682a03f0c8f3269",
+      "symbol": "USDC-eyUSDC",
+      "decimals": 18,
+      "extensions": {
+        "poolId": "0x74be95ff2bb67b49ca168ec5f682a03f0c8f3269000200000000000000000007",
+        "underlying": "0x7ef8E99980Da5bcEDcF7C10f41E55f759F6A174B",
+        "interestToken": "0x6E7A80364c02f6DA5A656a753ef77d9AF1aEFdCE",
+        "createdAtTimestamp": 1624665064,
+        "expiration": 1659363204
+      },
+      "name": "Element USDC - eyUSDC",
+      "tags": [
+        "wpool"
+      ]
+    },
+    {
+      "chainId": 31337,
+      "address": "0xF4706a1499bdC8A7C5c42FC208952dc559A41719",
+      "symbol": "USDC-eyUSDC",
+      "decimals": 18,
+      "extensions": {
+        "poolId": "0xf4706a1499bdc8a7c5c42fc208952dc559a41719000200000000000000000009",
+        "underlying": "0x7ef8E99980Da5bcEDcF7C10f41E55f759F6A174B",
+        "interestToken": "0xa2D02d5ef64883cE9DECE061Aa56eDfd0A32219a",
+        "createdAtTimestamp": 1624665076,
+        "expiration": 1643638529
+      },
+      "name": "Element USDC - eyUSDC",
+      "tags": [
+        "wpool"
+      ]
+    }
+  ]
+}
