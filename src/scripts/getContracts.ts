@@ -10,7 +10,7 @@ import { WETH__factory } from "src/types/factories/WETH__factory";
 
 import addresses from "src/all-addresses.json";
 import { UserProxy__factory } from "src/types/factories/UserProxy__factory";
-import { Signer } from "@ethersproject/abstract-signer";
+import { Signer } from "ethers";
 
 export function getContracts(hre: HardhatRuntimeEnvironment, signer?: Signer) {
   const {
@@ -25,7 +25,7 @@ export function getContracts(hre: HardhatRuntimeEnvironment, signer?: Signer) {
     marketFyUsdcAddress,
     userProxyContractAddress,
   } = addresses;
-  const provider = hre.ethers.provider;
+  const { provider } = hre.ethers;
   const balancerVaultContract = Vault__factory.connect(
     balancerVaultAddress,
     signer ?? provider

@@ -1,12 +1,10 @@
 import { parseEther } from "ethers/lib/utils";
 import hre from "hardhat";
-
-import { ERC20 } from "src/types/ERC20";
-
 import { MAX_ALLOWANCE } from "src/maxAllowance";
 import { batchSwapIn } from "src/scripts/batchSwapIn";
 import { getContracts } from "src/scripts/getContracts";
 import { getSigner, SIGNER } from "src/scripts/getSigner";
+import { ERC20 } from "src/types/ERC20";
 
 async function simpleSwaps() {
   const trader1 = await getSigner(SIGNER.TRADER1, hre);
@@ -50,7 +48,7 @@ async function simpleSwaps() {
       swaps.push(
         batchSwapIn(
           wethContract,
-          (wethTrancheContract as unknown) as ERC20,
+          wethTrancheContract as unknown as ERC20,
           wethFytPoolId,
           trader1Address,
           balancerVaultContract,
@@ -60,7 +58,7 @@ async function simpleSwaps() {
       );
       swaps.push(
         batchSwapIn(
-          (wethTrancheContract as unknown) as ERC20,
+          wethTrancheContract as unknown as ERC20,
           wethContract,
           wethFytPoolId,
           trader1Address,
