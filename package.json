@@ -50,6 +50,7 @@
     "load-contracts": "sh scripts/load-elf-contracts.sh",
     "start": "npx hardhat node",
     "start-mainnet": "npx hardhat node --config hardhat.mainnet.config.ts",
-    "start-mainnet:dev": "npx hardhat node --config hardhat.mainnet.dev.config.ts"
+    "start-mainnet:dev": "npx hardhat node --config hardhat.mainnet.dev.config.ts",
+    "typecheck": "npx tsc --noEmit"
   }
 }
