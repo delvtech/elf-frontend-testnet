@@ -12,6 +12,7 @@
     "prettier": "^2.4.1"
   },
   "devDependencies": {
+    "@elementfi/core-typechain": "^1.0.1",
     "@elementfi/tokenlist": "^2.0.0",
     "@ethersproject/providers": "^5.5.1",
     "@nomiclabs/hardhat-ethers": "^2.0.3",
