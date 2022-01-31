@@ -40,8 +40,12 @@ async function main() {
   const userAddress = await userSigner.getAddress();
 
   // deploy base assets
-  const [wethContract, usdcContract, daiContract, lusdContract] =
-    await deployBaseAssets(wethSigner, usdcSigner, daiSigner, lusdSigner);
+  const [wethContract, usdcContract, daiContract] = await deployBaseAssets(
+    wethSigner,
+    usdcSigner,
+    daiSigner,
+    lusdSigner
+  );
 
   // supply element with WETH and USDC
   await mintTokensForAddress(elementAddress, {
@@ -331,7 +335,8 @@ async function main() {
 
       secondWethTrancheContract.address,
       secondWethFytPoolContract.address,
-      secondWethYcPoolContract.address,
+      // don't add this yieldpool to the safelist so we can test hiding UI when the pool doesn't exist
+      // secondWethYcPoolContract.address,
 
       expiredWethTrancheContract.address,
       expiredWethFytPoolContract.address,
@@ -393,7 +398,7 @@ async function mintTrancheTokensForSigner(
   trancheContractUnsigend: Tranche,
   balancerVaultContract: Vault,
   userProxyContractUnsigend: UserProxy,
-  amount: string = "100"
+  amount = "100"
 ) {
   const signerAddress = await signer.getAddress();
   const baseAssetContract = baseAssetContractUnsigned.connect(signer);
