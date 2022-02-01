@@ -1,13 +1,14 @@
+import {
+  ERC20__factory,
+  Tranche,
+  TrancheFactory,
+  Tranche__factory,
+} from "@elementfi/core-typechain";
 import { PrincipalTokenInfo, TokenTag } from "@elementfi/tokenlist";
 import { Event } from "@ethersproject/contracts";
 import { BigNumber } from "ethers";
 import hre from "hardhat";
 import zip from "lodash.zip";
-import { getTokenSymbolMulti } from "src/tokenlist/erc20";
-import { TrancheFactory } from "src/types";
-import { ERC20__factory } from "src/types/factories/ERC20__factory";
-import { Tranche__factory } from "src/types/factories/Tranche__factory";
-import { Tranche } from "src/types/Tranche";
 
 let hardhatSymbolOverrides = {};
 if (process.env.NODE_ENV === "development") {
@@ -158,7 +159,9 @@ async function getPrincipalTokenUnderlyings(
 }
 async function getPrincipalTokenSymbols(chainId: number, tranches: Tranche[]) {
   const trancheAddresses = tranches.map((tranche) => tranche.address);
-  const trancheSymbols = await getTokenSymbolMulti(tranches);
+  const trancheSymbols = await Promise.all(
+    tranches.map((tranche) => tranche.symbol())
+  );
   const overrides = trancheSymbolOverrides[chainId] || {};
   const symbols = zip(trancheAddresses, trancheSymbols).map((zipped) => {
     const [address, symbol] = zipped as [string, string];

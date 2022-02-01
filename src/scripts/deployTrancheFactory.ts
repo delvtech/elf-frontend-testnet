@@ -1,8 +1,9 @@
+import {
+  InterestTokenFactory,
+  TestDate,
+  TrancheFactory__factory,
+} from "@elementfi/core-typechain";
 import { Signer } from "ethers";
-
-import { TrancheFactory__factory } from "src/types/factories/TrancheFactory__factory";
-import { InterestTokenFactory } from "src/types/InterestTokenFactory";
-import { TestDate } from "src/types/TestDate";
 
 export async function deployTrancheFactory(
   signer: Signer,

@@ -1,15 +1,16 @@
-import hre from "hardhat";
-import zip from "lodash.zip";
-import { getTokenSymbolMulti } from "src/tokenlist/erc20";
+import {
+  ERC20__factory,
+  InterestToken,
+  InterestToken__factory,
+  Tranche__factory,
+} from "@elementfi/core-typechain";
 import {
   PrincipalTokenInfo,
   TokenTag,
   YieldTokenInfo,
 } from "@elementfi/tokenlist";
-import { ERC20__factory } from "src/types/factories/ERC20__factory";
-import { InterestToken__factory } from "src/types/factories/InterestToken__factory";
-import { Tranche__factory } from "src/types/factories/Tranche__factory";
-import { InterestToken } from "src/types/InterestToken";
+import hre from "hardhat";
+import zip from "lodash.zip";
 
 let hardhatSymbolOverrides = {};
 if (process.env.NODE_ENV === "development") {
@@ -111,7 +112,9 @@ async function getYieldTokenSymbols(
   const addresses = interestTokens.map(
     (interestToken) => interestToken.address
   );
-  const interestTokenSymbols = await getTokenSymbolMulti(interestTokens);
+  const interestTokenSymbols = await Promise.all(
+    interestTokens.map((token) => token.symbol())
+  );
   const overrides = symbolOverrides[chainId] || {};
   const symbols = zip(addresses, interestTokenSymbols).map((zipped) => {
     const [address, symbol] = zipped as [string, string];

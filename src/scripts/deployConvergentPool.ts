@@ -1,13 +1,13 @@
+import {
+  ConvergentCurvePool__factory,
+  ConvergentPoolFactory,
+  ERC20,
+  USDC,
+  Vault,
+  WETH,
+} from "@elementfi/core-typechain";
 import { Signer } from "ethers";
 import { parseEther } from "ethers/lib/utils";
-
-import { ConvergentPoolFactory } from "src/types/ConvergentPoolFactory";
-import { ERC20 } from "src/types/ERC20";
-import { ConvergentCurvePool__factory } from "src/types/factories/ConvergentCurvePool__factory";
-import { USDC } from "src/types/USDC";
-import { Vault } from "src/types/Vault";
-import { WETH } from "src/types/WETH";
-
 import { ONE_YEAR_IN_SECONDS, SIX_MONTHS_IN_SECONDS } from "src/time";
 
 const defaultOptions = {

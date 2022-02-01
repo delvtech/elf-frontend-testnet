@@ -1,3 +1,13 @@
+import {
+  ERC20,
+  Tranche__factory,
+  YVaultAssetProxy__factory,
+} from "@elementfi/core-typechain";
+import {
+  AssetProxyTokenInfo,
+  PrincipalTokenInfo,
+  TokenTag,
+} from "@elementfi/tokenlist";
 import hre from "hardhat";
 import uniq from "lodash.uniq";
 import zip from "lodash.zip";
@@ -6,14 +16,6 @@ import {
   getTokenNameMulti,
   getTokenSymbolMulti,
 } from "src/tokenlist/erc20";
-import {
-  AssetProxyTokenInfo,
-  PrincipalTokenInfo,
-  TokenTag,
-} from "@elementfi/tokenlist";
-import { Tranche__factory } from "src/types";
-import { ERC20 } from "src/types/ERC20";
-import { YVaultAssetProxy__factory } from "src/types/factories/YVaultAssetProxy__factory";
 
 export const { provider } = hre.ethers;
 

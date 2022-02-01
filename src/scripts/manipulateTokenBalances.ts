@@ -1,6 +1,6 @@
+import { ERC20__factory } from "@elementfi/core-typechain";
 import { JsonRpcProvider } from "@ethersproject/providers";
 import { ethers } from "ethers";
-import { ERC20__factory } from "src/types/factories/ERC20__factory";
 
 enum ContractLanguage {
   Solidity,

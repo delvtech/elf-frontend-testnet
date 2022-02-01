@@ -1,9 +1,11 @@
+import {
+  ConvergentCurvePool__factory,
+  ConvergentPoolFactory,
+} from "@elementfi/core-typechain";
 import { PrincipalPoolTokenInfo, TokenTag } from "@elementfi/tokenlist";
 import { BigNumber } from "ethers";
 import hre from "hardhat";
 import zip from "lodash.zip";
-import { ConvergentPoolFactory } from "src/types";
-import { ConvergentCurvePool__factory } from "src/types/factories/ConvergentCurvePool__factory";
 
 export const { provider } = hre.ethers;
 export async function getPrincipalPoolTokenInfos(

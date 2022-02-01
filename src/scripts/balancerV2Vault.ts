@@ -1,7 +1,5 @@
+import { Vault__factory, WETH } from "@elementfi/core-typechain";
 import { Signer } from "ethers";
-
-import { Vault__factory } from "src/types/factories/Vault__factory";
-import { WETH } from "src/types/WETH";
 
 export async function deployBalancerVault(signer: Signer, wethContract: WETH) {
   const wethAddress = wethContract.address;

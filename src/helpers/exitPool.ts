@@ -1,7 +1,6 @@
+import { Vault__factory } from "@elementfi/core-typechain";
 import { BigNumber, ContractTransaction, Signer } from "ethers";
 import { defaultAbiCoder } from "ethers/lib/utils";
-
-import { Vault__factory } from "src/types/factories/Vault__factory";
 
 /**
  * Remove liquidity from a ConvergentCurvePool.
@@ -25,7 +24,7 @@ export async function exitConvergentPool(
   vaultAddress: string,
   tokens: string[],
   minAmountsOut: BigNumber[],
-  toInternalBalance: boolean = false
+  toInternalBalance = false
 ): Promise<ContractTransaction> {
   // Balancer V2 vault allows userData as a way to pass props through to pool contracts.  In this
   // case we need to pass the maxAmountsIn.
@@ -80,7 +79,7 @@ export async function exitWeightedPool(
   vaultAddress: string,
   tokens: string[],
   minAmountsOut: BigNumber[],
-  toInternalBalance: boolean = false,
+  toInternalBalance = false,
   exitKind: WeightedPoolExitKind = WeightedPoolExitKind.EXACT_BPT_IN_FOR_TOKENS_OUT,
   maxBPTIn: BigNumber,
   tokenIndex?: number

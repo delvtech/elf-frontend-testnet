@@ -1,18 +1,22 @@
-import "module-alias/register";
-
+import {
+  TestDate,
+  Tranche,
+  USDC,
+  UserProxy,
+  Vault,
+  WETH,
+} from "@elementfi/core-typechain";
+import { Signer } from "ethers";
 import { parseUnits } from "ethers/lib/utils";
 import fs from "fs";
 import hre, { ethers } from "hardhat";
-
-import { TestDate } from "src/types/TestDate";
-
+import "module-alias/register";
 import { MAX_ALLOWANCE } from "src/maxAllowance";
 import { deployConvergentPoolFactory } from "src/scripts/deployConvergentPoolFactory";
 import { deployInterestTokenFactory } from "src/scripts/deployInterestTokenFactory";
 import { deployTrancheFactory } from "src/scripts/deployTrancheFactory";
 import { getSigner, SIGNER } from "src/scripts/getSigner";
 import { THIRTY_DAYS_IN_SECONDS } from "src/time";
-
 import { AddressesJsonFile } from "../addresses/AddressesJsonFile";
 import { deployBalancerVault } from "./balancerV2Vault";
 import { deployBaseAssets } from "./baseAssets";
@@ -21,11 +25,6 @@ import { deployVaultsAndProxys } from "./deployVaultsAndProxys";
 import { deployWeightedPoolFactory } from "./deployWeightedPoolFactory";
 import { mintTokensForAddress } from "./mintTokensForAddress";
 import { deployUserProxy } from "./userProxy";
-import { Tranche } from "src/types/Tranche";
-import { Signer } from "ethers";
-import { Vault } from "src/types/Vault";
-import { UserProxy } from "src/types/UserProxy";
-import { USDC, WETH } from "src/types";
 
 async function main() {
   const elementSigner = await getSigner(SIGNER.ELEMENT, hre);
@@ -40,8 +39,12 @@ async function main() {
   const userAddress = await userSigner.getAddress();
 
   // deploy base assets
-  const [wethContract, usdcContract, daiContract, lusdContract] =
-    await deployBaseAssets(wethSigner, usdcSigner, daiSigner, lusdSigner);
+  const [wethContract, usdcContract, daiContract] = await deployBaseAssets(
+    wethSigner,
+    usdcSigner,
+    daiSigner,
+    lusdSigner
+  );
 
   // supply element with WETH and USDC
   await mintTokensForAddress(elementAddress, {
@@ -393,7 +396,7 @@ async function mintTrancheTokensForSigner(
   trancheContractUnsigend: Tranche,
   balancerVaultContract: Vault,
   userProxyContractUnsigend: UserProxy,
-  amount: string = "100"
+  amount = "100"
 ) {
   const signerAddress = await signer.getAddress();
   const baseAssetContract = baseAssetContractUnsigned.connect(signer);

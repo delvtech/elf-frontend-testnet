@@ -1,3 +1,4 @@
+import { ERC20__factory } from "@elementfi/core-typechain";
 import { TokenInfo } from "@elementfi/tokenlist";
 import hre from "hardhat";
 import zip from "lodash.zip";
@@ -6,7 +7,6 @@ import {
   getTokenNameMulti,
   getTokenSymbolMulti,
 } from "src/tokenlist/erc20";
-import { ERC20__factory } from "src/types/factories/ERC20__factory";
 
 export const { provider } = hre.ethers;
 export async function getUnderlyingTokenInfos(

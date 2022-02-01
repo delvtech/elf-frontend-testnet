@@ -1,7 +1,5 @@
+import { Vault, WeightedPoolFactory__factory } from "@elementfi/core-typechain";
 import { Signer } from "ethers";
-
-import { WeightedPoolFactory__factory } from "src/types/factories/WeightedPoolFactory__factory";
-import { Vault } from "src/types/Vault";
 
 export async function deployWeightedPoolFactory(
   signer: Signer,

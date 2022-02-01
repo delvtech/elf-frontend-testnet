@@ -1,11 +1,12 @@
 import { Signer } from "ethers";
 import { solidityKeccak256 } from "ethers/lib/utils";
 
-import { UserProxy__factory } from "src/types/factories/UserProxy__factory";
-import { TrancheFactory } from "src/types/TrancheFactory";
-import { UserProxy } from "src/types/UserProxy";
-import { WETH } from "src/types/WETH";
-
+import {
+  UserProxy__factory,
+  TrancheFactory,
+  UserProxy,
+  WETH,
+} from "@elementfi/core-typechain";
 // TODO: figure out how to alias the artifacts/ directory
 import trancheData from "../../artifacts/src/contracts/Tranche.sol/Tranche.json";
 

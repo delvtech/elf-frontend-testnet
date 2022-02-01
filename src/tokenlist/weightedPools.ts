@@ -1,4 +1,10 @@
 import {
+  Vault,
+  WeightedPool,
+  WeightedPoolFactory,
+  WeightedPool__factory,
+} from "@elementfi/core-typechain";
+import {
   TokenInfo,
   TokenTag,
   YieldPoolTokenInfo,
@@ -6,9 +12,6 @@ import {
 } from "@elementfi/tokenlist";
 import hre from "hardhat";
 import zip from "lodash.zip";
-import { Vault, WeightedPoolFactory } from "src/types";
-import { WeightedPool__factory } from "src/types/factories/WeightedPool__factory";
-import { WeightedPool } from "src/types/WeightedPool";
 
 export const { provider } = hre.ethers;
 export async function getYieldPoolTokenInfos(

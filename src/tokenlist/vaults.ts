@@ -1,3 +1,4 @@
+import { ERC20, TestYVault__factory } from "@elementfi/core-typechain";
 import {
   AssetProxyTokenInfo,
   TokenInfo,
@@ -6,8 +7,6 @@ import {
 } from "@elementfi/tokenlist";
 import hre from "hardhat";
 import zip from "lodash.zip";
-import { ERC20 } from "src/types/ERC20";
-import { TestYVault__factory } from "src/types/factories/TestYVault__factory";
 import {
   getTokenDecimalsMulti,
   getTokenNameMulti,

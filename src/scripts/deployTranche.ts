@@ -1,8 +1,10 @@
+import {
+  TrancheFactory,
+  Tranche__factory,
+  YVaultAssetProxy,
+} from "@elementfi/core-typechain";
 import { Signer } from "ethers";
 import { getTerms } from "src/helpers/getTerms";
-import { Tranche__factory } from "src/types/factories/Tranche__factory";
-import { TrancheFactory } from "src/types/TrancheFactory";
-import { YVaultAssetProxy } from "src/types/YVaultAssetProxy";
 
 export async function deployTranche(
   signer: Signer,

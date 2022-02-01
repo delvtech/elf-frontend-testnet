@@ -1,6 +1,5 @@
+import { YVaultAssetProxy__factory } from "@elementfi/core-typechain";
 import { Signer } from "ethers";
-
-import { YVaultAssetProxy__factory } from "src/types/factories/YVaultAssetProxy__factory";
 
 export async function deployYearnVaultAssetProxy(
   signer: Signer,

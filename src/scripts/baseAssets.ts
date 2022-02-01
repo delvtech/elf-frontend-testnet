@@ -1,11 +1,16 @@
 import { Signer } from "ethers";
 import { parseEther } from "ethers/lib/utils";
 
-import { DAI, LUSD, LUSD__factory, WETH__factory } from "src/types";
-import { DAI__factory } from "src/types/factories/DAI__factory";
-import { USDC__factory } from "src/types/factories/USDC__factory";
-import { USDC } from "src/types/USDC";
-import { WETH } from "src/types/WETH";
+import {
+  DAI,
+  LUSD,
+  LUSD__factory,
+  WETH__factory,
+  DAI__factory,
+  USDC__factory,
+  USDC,
+  WETH,
+} from "@elementfi/core-typechain";
 
 export async function deployBaseAssets(
   wethSigner: Signer,

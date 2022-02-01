@@ -1,8 +1,7 @@
+import { ERC20, Vault } from "@elementfi/core-typechain";
 import { BigNumberish } from "ethers";
 import { BytesLike, parseUnits } from "ethers/lib/utils";
 import { sortAddresses } from "src/helpers/sortAddresses";
-import { ERC20 } from "src/types/ERC20";
-import { Vault } from "src/types/Vault";
 
 interface Swap {
   poolId: BytesLike;

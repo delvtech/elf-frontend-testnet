@@ -1,6 +1,5 @@
+import { InterestTokenFactory__factory } from "@elementfi/core-typechain";
 import { Signer } from "ethers";
-
-import { InterestTokenFactory__factory } from "src/types/factories/InterestTokenFactory__factory";
 
 export async function deployInterestTokenFactory(signer: Signer) {
   const tokenFactoryDeployer = new InterestTokenFactory__factory(signer);

@@ -1,23 +1,20 @@
+import {
+  ConvergentPoolFactory__factory,
+  TrancheFactory__factory,
+  Vault__factory,
+  WeightedPoolFactory__factory,
+} from "@elementfi/core-typechain";
+import { tags, TokenList } from "@elementfi/tokenlist";
 import fs from "fs";
 import hre from "hardhat";
-
-import { TrancheFactory__factory } from "src/types/factories/TrancheFactory__factory";
-
 import { AddressesJsonFile } from "src/addresses/AddressesJsonFile";
 import { getAssetProxyTokenInfos } from "src/tokenlist/assetProxies";
 import { getPrincipalPoolTokenInfos } from "src/tokenlist/ccpools";
 import { getUnderlyingTokenInfos } from "src/tokenlist/underlying";
 import { getVaultTokenInfos } from "src/tokenlist/vaults";
 import { getYieldPoolTokenInfos } from "src/tokenlist/weightedPools";
-
-import { getYieldTokenInfos } from "./yieldTokens";
 import { getPrincipalTokenInfos } from "./principalTokens";
-import {
-  ConvergentPoolFactory__factory,
-  Vault__factory,
-  WeightedPoolFactory__factory,
-} from "src/types";
-import { TokenList, tags } from "@elementfi/tokenlist";
+import { getYieldTokenInfos } from "./yieldTokens";
 
 const { provider } = hre.ethers;
 

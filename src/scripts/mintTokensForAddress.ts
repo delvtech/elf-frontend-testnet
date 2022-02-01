@@ -1,7 +1,5 @@
+import { USDC, WETH } from "@elementfi/core-typechain";
 import { parseUnits } from "ethers/lib/utils";
-
-import { USDC } from "src/types/USDC";
-import { WETH } from "src/types/WETH";
 
 const defaultOptions = {
   tokens: [],
@@ -15,7 +13,8 @@ export async function mintTokensForAddress(
     amounts?: string | string[];
   }
 ) {
-  let { amounts, tokens } = { ...defaultOptions, ...options };
+  let { amounts } = { ...defaultOptions, ...options };
+  const { tokens } = { ...defaultOptions, ...options };
   if (!Array.isArray(amounts)) {
     amounts = tokens.map(() => amounts) as string[];
   }

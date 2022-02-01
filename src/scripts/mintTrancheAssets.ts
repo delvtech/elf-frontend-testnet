@@ -1,11 +1,11 @@
+import {
+  Tranche,
+  USDC,
+  WETH,
+  YVaultAssetProxy__factory,
+} from "@elementfi/core-typechain";
 import { Signer } from "ethers";
 import { parseUnits } from "ethers/lib/utils";
-import { YVaultAssetProxy__factory } from "src/types/factories/YVaultAssetProxy__factory";
-
-import { Tranche } from "src/types/Tranche";
-import { USDC } from "src/types/USDC";
-import { WETH } from "src/types/WETH";
-
 import { MAX_ALLOWANCE } from "../maxAllowance";
 
 export async function mintTrancheAssets(

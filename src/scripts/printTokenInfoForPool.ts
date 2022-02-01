@@ -1,7 +1,6 @@
+import { ERC20__factory, Vault } from "@elementfi/core-typechain";
 import { Signer } from "ethers";
 import { formatUnits } from "ethers/lib/utils";
-import { ERC20__factory } from "src/types/factories/ERC20__factory";
-import { Vault } from "src/types/Vault";
 
 export async function printTokenInfoForPool(
   vault: Vault,

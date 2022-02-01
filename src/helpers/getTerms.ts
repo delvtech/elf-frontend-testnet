@@ -1,7 +1,6 @@
+import { TrancheFactory__factory } from "@elementfi/core-typechain";
 import { Provider } from "@ethersproject/providers";
 import { Signer } from "ethers";
-
-import { TrancheFactory__factory } from "src/types/factories/TrancheFactory__factory";
 
 /**
  * Returns an array of tranche addresses for a given tranche factory.  filterable by wrapped position.
