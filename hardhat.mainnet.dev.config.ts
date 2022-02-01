@@ -25,7 +25,7 @@ task("intervalMining", "Mine blocks on an interval")
   });
 
 task("autoMine", "Mine blocks on every transaction automatically").setAction(
-  async (taskArgs, hre) => {
+  async (_, hre) => {
     console.log("Enabling automine");
     await hre.ethers.provider.send("evm_setAutomine", [true]);
     console.log("Disabling interval");
