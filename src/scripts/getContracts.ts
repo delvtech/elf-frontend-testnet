@@ -1,16 +1,16 @@
+import {
+  ConvergentCurvePool__factory,
+  ConvergentPoolFactory__factory,
+  Tranche__factory,
+  USDC__factory,
+  UserProxy__factory,
+  Vault__factory,
+  WeightedPoolFactory__factory,
+  WETH__factory,
+} from "@elementfi/core-typechain";
+import { Signer } from "ethers";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
-
-import { ConvergentCurvePool__factory } from "src/types/factories/ConvergentCurvePool__factory";
-import { ConvergentPoolFactory__factory } from "src/types/factories/ConvergentPoolFactory__factory";
-import { Tranche__factory } from "src/types/factories/Tranche__factory";
-import { USDC__factory } from "src/types/factories/USDC__factory";
-import { Vault__factory } from "src/types/factories/Vault__factory";
-import { WeightedPoolFactory__factory } from "src/types/factories/WeightedPoolFactory__factory";
-import { WETH__factory } from "src/types/factories/WETH__factory";
-
 import addresses from "src/all-addresses.json";
-import { UserProxy__factory } from "src/types/factories/UserProxy__factory";
-import { Signer } from "@ethersproject/abstract-signer";
 
 export function getContracts(hre: HardhatRuntimeEnvironment, signer?: Signer) {
   const {
@@ -25,7 +25,7 @@ export function getContracts(hre: HardhatRuntimeEnvironment, signer?: Signer) {
     marketFyUsdcAddress,
     userProxyContractAddress,
   } = addresses;
-  const provider = hre.ethers.provider;
+  const { provider } = hre.ethers;
   const balancerVaultContract = Vault__factory.connect(
     balancerVaultAddress,
     signer ?? provider

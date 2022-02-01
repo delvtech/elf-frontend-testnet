@@ -1,14 +1,14 @@
+import {
+  InterestToken__factory,
+  Tranche,
+  USDC,
+  Vault,
+  WeightedPoolFactory,
+  WETH,
+} from "@elementfi/core-typechain";
 import { BigNumber, Signer } from "ethers";
 import { defaultAbiCoder, parseEther, parseUnits } from "ethers/lib/utils";
 import { MAX_ALLOWANCE } from "src/maxAllowance";
-import { InterestToken__factory } from "src/types/factories/InterestToken__factory";
-
-import { Tranche } from "src/types/Tranche";
-import { USDC } from "src/types/USDC";
-import { Vault } from "src/types/Vault";
-import { WeightedPoolFactory } from "src/types/WeightedPoolFactory";
-import { WETH } from "src/types/WETH";
-
 import { deployWeightedPool } from "./deployWeightedPool";
 
 // JoinKind from WeightedPool.sol

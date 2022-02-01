@@ -1,21 +1,19 @@
+import {
+  ERC20__factory,
+  Tranche,
+  TrancheFactory,
+  Tranche__factory,
+} from "@elementfi/core-typechain";
+import { PrincipalTokenInfo, TokenTag } from "@elementfi/tokenlist";
 import { Event } from "@ethersproject/contracts";
-import { TokenInfo } from "@uniswap/token-lists";
+import { BigNumber } from "ethers";
 import hre from "hardhat";
 import zip from "lodash.zip";
-
-import { ERC20__factory } from "src/types/factories/ERC20__factory";
-import { Tranche__factory } from "src/types/factories/Tranche__factory";
-import { TrancheFactory__factory } from "src/types/factories/TrancheFactory__factory";
-import { Tranche } from "src/types/Tranche";
 
 let hardhatSymbolOverrides = {};
 if (process.env.NODE_ENV === "development") {
   hardhatSymbolOverrides = require("src/addresses/testnet.symbolOverrides.json");
 }
-
-import { PrincipalTokenInfo, TokenListTag } from "src/tokenlist/types";
-import { getTokenSymbolMulti } from "src/tokenlist/erc20";
-import { TrancheFactory } from "src/types";
 
 const MAINNET_CHAIN_ID = 1;
 const GOERLI_CHAIN_ID = 5;
@@ -44,7 +42,7 @@ const trancheUnderlyingOverrides: Record<
   [MAINNET_CHAIN_ID]: {},
 };
 
-const provider = hre.ethers.provider;
+const { provider } = hre.ethers;
 export async function getPrincipalTokenInfos(
   chainId: number,
   trancheFactory: TrancheFactory,
@@ -92,7 +90,9 @@ export async function getPrincipalTokenInfos(
     safeTranches.map((tranche) => tranche.position())
   );
 
-  const principalTokensList: PrincipalTokenInfo[] = zip<any>(
+  const principalTokensList: PrincipalTokenInfo[] = zip<
+    string | number | BigNumber
+  >(
     safeTrancheAddresses,
     principalTokenSymbols,
     principalTokenNames,
@@ -123,11 +123,11 @@ export async function getPrincipalTokenInfos(
           underlying: underlying as string,
           position: position as string,
           interestToken: interestToken as string,
-          unlockTimestamp: unlockTimestamp?.toNumber() as number,
+          unlockTimestamp: (unlockTimestamp as BigNumber).toNumber() as number,
           createdAtTimestamp: createdAtTimestamp as number,
         },
         name: name as string,
-        tags: [TokenListTag.PRINCIPAL],
+        tags: [TokenTag.PRINCIPAL],
         // TODO: What logo do we want to show for interest tokens?
         // logoURI: ""
       };
@@ -159,7 +159,9 @@ async function getPrincipalTokenUnderlyings(
 }
 async function getPrincipalTokenSymbols(chainId: number, tranches: Tranche[]) {
   const trancheAddresses = tranches.map((tranche) => tranche.address);
-  const trancheSymbols = await getTokenSymbolMulti(tranches);
+  const trancheSymbols = await Promise.all(
+    tranches.map((tranche) => tranche.symbol())
+  );
   const overrides = trancheSymbolOverrides[chainId] || {};
   const symbols = zip(trancheAddresses, trancheSymbols).map((zipped) => {
     const [address, symbol] = zipped as [string, string];
@@ -201,7 +203,7 @@ async function getTrancheCreatedEvents(
   // the blocks the tranches were created in
   const blocks = await Promise.all(
     filteredTranches.map((event) => {
-      const blockNumber = event.blockNumber;
+      const { blockNumber } = event;
       return provider.getBlock(blockNumber);
     })
   );

@@ -1,17 +1,14 @@
-import { formatUnits, parseEther, parseUnits } from "ethers/lib/utils";
+import { ERC20Permit, ERC20Permit__factory } from "@elementfi/core-typechain";
+import { BigNumber, ethers, Signer } from "ethers";
+import { parseUnits } from "ethers/lib/utils";
 import hre from "hardhat";
-
-import { MAX_ALLOWANCE } from "src/maxAllowance";
 import { exitConvergentCurvePool } from "src/helpers/exitConvergentCurvePool";
+import { fetchPermitData, PermitCallData } from "src/helpers/fetchPermitData";
+import { joinConvergentCurvePool } from "src/helpers/joinConvergentCurvePool";
+import { MAX_ALLOWANCE } from "src/maxAllowance";
 import { getContracts } from "src/scripts/getContracts";
 import { getSigner, SIGNER } from "src/scripts/getSigner";
-import { joinConvergentCurvePool } from "src/helpers/joinConvergentCurvePool";
-import { printSpotPriceForPool } from "src/scripts/printSpotPriceForPool";
 import { printTokenInfoForPool } from "src/scripts/printTokenInfoForPool";
-import { fetchPermitData, PermitCallData } from "src/helpers/fetchPermitData";
-import { ERC20Permit, ERC20Permit__factory, Tranche } from "src/types";
-import { BigNumber, ethers, Signer } from "ethers";
-import { networkInterfaces } from "os";
 
 async function simpleJoins() {
   const trader1 = await getSigner(SIGNER.TRADER1, hre);

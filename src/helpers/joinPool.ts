@@ -1,7 +1,6 @@
+import { Vault__factory } from "@elementfi/core-typechain";
 import { BigNumber, Signer } from "ethers";
 import { defaultAbiCoder } from "ethers/lib/utils";
-
-import { Vault__factory } from "src/types/factories/Vault__factory";
 
 /**
  * Add liquidity to a ConvergentCurvePool.
@@ -24,7 +23,7 @@ export async function joinConvergentPool(
   vaultAddress: string,
   tokens: string[],
   maxAmountsIn: BigNumber[],
-  fromInternalBalance: boolean = false
+  fromInternalBalance = false
 ) {
   // Balancer V2 vault allows userData as a way to pass props through to pool contracts.  In this
   // case we need to pass the maxAmountsIn.
@@ -79,7 +78,7 @@ export async function joinWeightedPool(
   tokens: string[],
   maxAmountsIn: BigNumber[],
   minBPTOut: BigNumber = ZeroBigNumber,
-  fromInternalBalance: boolean = false,
+  fromInternalBalance = false,
   joinKind: WeightedPoolJoinKind = WeightedPoolJoinKind.EXACT_TOKENS_IN_FOR_BPT_OUT
 ) {
   // Balancer V2 vault allows userData as a way to pass props through to pool contracts.  In this

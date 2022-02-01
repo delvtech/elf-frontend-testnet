@@ -1,6 +1,5 @@
+import { TestYVault__factory } from "@elementfi/core-typechain";
 import { Signer } from "ethers";
-
-import { TestYVault__factory } from "src/types/factories/TestYVault__factory";
 
 // TODO: update TestYVault to accept name/symbol
 export async function deployYearnVault(

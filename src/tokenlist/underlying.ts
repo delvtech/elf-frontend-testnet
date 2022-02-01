@@ -1,16 +1,14 @@
-import { TokenInfo } from "@uniswap/token-lists";
+import { ERC20__factory } from "@elementfi/core-typechain";
+import { TokenInfo } from "@elementfi/tokenlist";
 import hre from "hardhat";
 import zip from "lodash.zip";
-
-import { ERC20__factory } from "src/types/factories/ERC20__factory";
-import { TokenListTag } from "src/tokenlist/types";
 import {
+  getTokenDecimalsMulti,
   getTokenNameMulti,
   getTokenSymbolMulti,
-  getTokenDecimalsMulti,
 } from "src/tokenlist/erc20";
 
-export const provider = hre.ethers.provider;
+export const { provider } = hre.ethers;
 export async function getUnderlyingTokenInfos(
   chainId: number,
   underlyingTokenAddresses: string[]
@@ -28,20 +26,17 @@ export async function getUnderlyingTokenInfos(
     symbols,
     names,
     decimals
-  ).map(
-    ([address, symbol, name, decimal]): TokenInfo => {
-      return {
-        chainId,
-        address: address as string,
-        symbol: symbol as string,
-        decimals: decimal as number,
-        name: name as string,
-        tags: [TokenListTag.UNDERLYING],
-        // TODO: What logo do we want to show for base assets?
-        // logoURI: ""
-      };
-    }
-  );
+  ).map(([address, symbol, name, decimal]): TokenInfo => {
+    return {
+      chainId,
+      address: address as string,
+      symbol: symbol as string,
+      decimals: decimal as number,
+      name: name as string,
+      // TODO: What logo do we want to show for base assets?
+      // logoURI: ""
+    };
+  });
 
   return baseAssetsList;
 }

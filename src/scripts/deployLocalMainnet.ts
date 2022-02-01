@@ -1,10 +1,3 @@
-import "module-alias/register";
-
-import { Signer } from "ethers";
-import { parseEther } from "ethers/lib/utils";
-import fs from "fs";
-import hre, { ethers } from "hardhat";
-
 import {
   ConvergentPoolFactory__factory,
   ERC20__factory,
@@ -15,8 +8,12 @@ import {
   Vault__factory,
   WeightedPoolFactory__factory,
   WETH__factory,
-} from "src/types";
-
+} from "@elementfi/core-typechain";
+import { Signer } from "ethers";
+import { parseEther } from "ethers/lib/utils";
+import fs from "fs";
+import hre, { ethers } from "hardhat";
+import "module-alias/register";
 import { AddressesJsonFile } from "src/addresses/AddressesJsonFile";
 import { deployTrancheAndMarket } from "src/scripts/deployTrancheAndMarket";
 import { deployVaultsAndProxys } from "src/scripts/deployVaultsAndProxys";
@@ -312,10 +309,10 @@ async function getSigners() {
     params: [DAI_WHALE_ADDRESS],
   });
 
-  const ethWhaleSigner = await ethers.provider.getSigner(ETH_WHALE_ADDRESS);
-  const wethWhaleSigner = await ethers.provider.getSigner(WETH_WHALE_ADDRESS);
-  const usdcWhaleSigner = await ethers.provider.getSigner(USDC_WHALE_ADDRESS);
-  const daiWhaleSigner = await ethers.provider.getSigner(DAI_WHALE_ADDRESS);
+  const ethWhaleSigner = ethers.provider.getSigner(ETH_WHALE_ADDRESS);
+  const wethWhaleSigner = ethers.provider.getSigner(WETH_WHALE_ADDRESS);
+  const usdcWhaleSigner = ethers.provider.getSigner(USDC_WHALE_ADDRESS);
+  const daiWhaleSigner = ethers.provider.getSigner(DAI_WHALE_ADDRESS);
   return {
     elementSigner,
     balancerSigner,

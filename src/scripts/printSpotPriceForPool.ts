@@ -1,7 +1,6 @@
+import { ERC20__factory, Vault } from "@elementfi/core-typechain";
 import { Signer } from "ethers";
 import { formatUnits } from "ethers/lib/utils";
-import { ERC20__factory } from "src/types/factories/ERC20__factory";
-import { Vault } from "src/types/Vault";
 import { queryBatchSwap } from "./queryBatchSwap";
 
 export async function printSpotPriceForPool(
@@ -11,7 +10,7 @@ export async function printSpotPriceForPool(
 ) {
   const sender = await signer.getAddress();
   const tokenInfo = await vault.getPoolTokens(poolId);
-  let [tokens] = tokenInfo;
+  const [tokens] = tokenInfo;
   const token0 = ERC20__factory.connect(tokens[0], signer);
   const token0Name = await token0.symbol();
   const token0Decimals = await token0.decimals();

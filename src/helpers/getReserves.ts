@@ -1,8 +1,6 @@
+import { BasePool__factory, Vault__factory } from "@elementfi/core-typechain";
 import { Provider } from "@ethersproject/providers";
 import { BigNumber, Signer } from "ethers";
-
-import { BasePool__factory } from "src/types/factories/BasePool__factory";
-import { Vault__factory } from "src/types/factories/Vault__factory";
 
 interface ReservesResult {
   /**

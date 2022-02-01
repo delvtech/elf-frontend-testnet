@@ -1,11 +1,6 @@
+import { Tranche, USDC, Vault, WETH } from "@elementfi/core-typechain";
 import { Signer } from "ethers";
 import { defaultAbiCoder, parseUnits } from "ethers/lib/utils";
-
-import { Tranche } from "src/types/Tranche";
-import { USDC } from "src/types/USDC";
-import { Vault } from "src/types/Vault";
-import { WETH } from "src/types/WETH";
-
 import { MAX_ALLOWANCE } from "src/maxAllowance";
 
 /**
@@ -28,7 +23,7 @@ export async function initializeConvergentPool(
 ) {
   const signerAddress = await signer.getAddress();
   // tokens in ascending order by address
-  let { tokens } = await vaultContract.getPoolTokens(poolId);
+  const { tokens } = await vaultContract.getPoolTokens(poolId);
 
   const baseAssetDecimals = await baseAssetContract.decimals();
   // Max amount for each asset to join the pool with. the initial join only allows base asset.  this

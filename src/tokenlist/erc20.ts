@@ -1,4 +1,4 @@
-import { ERC20 } from "src/types/ERC20";
+import { ERC20 } from "@elementfi/core-typechain";
 
 export async function getTokenDecimalsMulti(
   tokens: ERC20[]

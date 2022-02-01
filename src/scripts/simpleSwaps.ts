@@ -1,8 +1,6 @@
+import { ERC20 } from "@elementfi/core-typechain";
 import { parseEther } from "ethers/lib/utils";
 import hre from "hardhat";
-
-import { ERC20 } from "src/types/ERC20";
-
 import { MAX_ALLOWANCE } from "src/maxAllowance";
 import { batchSwapIn } from "src/scripts/batchSwapIn";
 import { getContracts } from "src/scripts/getContracts";
@@ -49,8 +47,8 @@ async function simpleSwaps() {
     while (swapCount < numSwaps) {
       swaps.push(
         batchSwapIn(
-          wethContract,
-          (wethTrancheContract as unknown) as ERC20,
+          wethContract as unknown as ERC20,
+          wethTrancheContract as unknown as ERC20,
           wethFytPoolId,
           trader1Address,
           balancerVaultContract,
@@ -60,8 +58,8 @@ async function simpleSwaps() {
       );
       swaps.push(
         batchSwapIn(
-          (wethTrancheContract as unknown) as ERC20,
-          wethContract,
+          wethTrancheContract as unknown as ERC20,
+          wethContract as unknown as ERC20,
           wethFytPoolId,
           trader1Address,
           balancerVaultContract,

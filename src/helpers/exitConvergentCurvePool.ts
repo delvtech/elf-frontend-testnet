@@ -1,8 +1,6 @@
+import { Vault } from "@elementfi/core-typechain";
 import { Signer } from "ethers";
 import { defaultAbiCoder, parseUnits } from "ethers/lib/utils";
-import { MAX_ALLOWANCE } from "src/maxAllowance";
-
-import { Vault } from "src/types/Vault";
 
 /**
  * Stakes an initial amount of base asset into the ConvergentCurvePool

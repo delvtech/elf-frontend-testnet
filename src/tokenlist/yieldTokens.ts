@@ -1,22 +1,22 @@
-import hre from "hardhat";
-import zip from "lodash.zip";
-import { getTokenSymbolMulti } from "src/tokenlist/erc20";
+import {
+  ERC20__factory,
+  InterestToken,
+  InterestToken__factory,
+  Tranche__factory,
+} from "@elementfi/core-typechain";
 import {
   PrincipalTokenInfo,
-  TokenListTag,
+  TokenTag,
   YieldTokenInfo,
-} from "src/tokenlist/types";
-import { ERC20__factory } from "src/types/factories/ERC20__factory";
-import { InterestToken__factory } from "src/types/factories/InterestToken__factory";
-import { Tranche__factory } from "src/types/factories/Tranche__factory";
-import { InterestToken } from "src/types/InterestToken";
-import { Tranche } from "src/types/Tranche";
+} from "@elementfi/tokenlist";
+import hre from "hardhat";
+import zip from "lodash.zip";
 
 let hardhatSymbolOverrides = {};
 if (process.env.NODE_ENV === "development") {
   hardhatSymbolOverrides = require("src/addresses/testnet.symbolOverrides.json");
 }
-export const provider = hre.ethers.provider;
+export const { provider } = hre.ethers;
 
 const GOERLI_CHAIN_ID = 5;
 const HARDHAT_CHAIN_ID = 31337;
@@ -66,7 +66,7 @@ export async function getYieldTokenInfos(
     interestTokens.map((interestToken) => interestToken.decimals())
   );
 
-  const yieldTokensList: YieldTokenInfo[] = zip<any>(
+  const yieldTokensList: YieldTokenInfo[] = zip<string | number>(
     interestTokenAddresses,
     yieldTokenSymbols,
     yieldTokenNames,
@@ -95,7 +95,7 @@ export async function getYieldTokenInfos(
           underlying: underlying as string,
           unlockTimestamp: unlockTimestamp as number,
         },
-        tags: [TokenListTag.YIELD],
+        tags: [TokenTag.YIELD],
         // TODO: What logo do we want to show for interest tokens?
         // logoURI: ""
       };
@@ -112,7 +112,9 @@ async function getYieldTokenSymbols(
   const addresses = interestTokens.map(
     (interestToken) => interestToken.address
   );
-  const interestTokenSymbols = await getTokenSymbolMulti(interestTokens);
+  const interestTokenSymbols = await Promise.all(
+    interestTokens.map((token) => token.symbol())
+  );
   const overrides = symbolOverrides[chainId] || {};
   const symbols = zip(addresses, interestTokenSymbols).map((zipped) => {
     const [address, symbol] = zipped as [string, string];

@@ -1,21 +1,20 @@
+import {
+  ConvergentPoolFactory,
+  ERC20,
+  InterestToken__factory,
+  TrancheFactory,
+  USDC,
+  Vault,
+  WeightedPoolFactory,
+  WETH,
+  YVaultAssetProxy,
+} from "@elementfi/core-typechain";
 import { Signer } from "ethers";
-
-import { ConvergentPoolFactory } from "src/types/ConvergentPoolFactory";
-import { TrancheFactory } from "src/types/TrancheFactory";
-import { USDC } from "src/types/USDC";
-import { Vault } from "src/types/Vault";
-import { WeightedPoolFactory } from "src/types/WeightedPoolFactory";
-import { WETH } from "src/types/WETH";
-import { YVaultAssetProxy } from "src/types/YVaultAssetProxy";
-
 import { deployConvergentPool } from "src/scripts/deployConvergentPool";
 import { setupPrincipalTokenPool } from "src/scripts/setupPrincipalToken";
 import { SIX_MONTHS_IN_SECONDS } from "src/time";
-
 import { deployTranche } from "./deployTranche";
 import { setupInterestTokenPool } from "./setupInterestTokenPool";
-import { ERC20 } from "src/types/ERC20";
-import { InterestToken__factory } from "src/types/factories/InterestToken__factory";
 
 const defaultOptions = {
   swapFeeConvergentCurvePool: "0.1",
@@ -66,20 +65,21 @@ export async function deployTrancheAndMarket(
     expiration
   );
   const interestTokenAddress = await trancheContract.interestToken();
-  const interestTokenContract = InterestToken__factory.connect(interestTokenAddress, signer);
+  const interestTokenContract = InterestToken__factory.connect(
+    interestTokenAddress,
+    signer
+  );
 
   // deploy an FYT market, seed with base asset
-  const {
-    poolId: fytPoolId,
-    poolContract: fytPoolContract,
-  } = await deployConvergentPool(
-    signer,
-    convergentPoolFactory,
-    balancerVaultContract,
-    baseAssetContract,
-    (trancheContract as unknown) as ERC20,
-    { swapFee: swapFeeConvergentCurvePool, durationInSeconds }
-  );
+  const { poolId: fytPoolId, poolContract: fytPoolContract } =
+    await deployConvergentPool(
+      signer,
+      convergentPoolFactory,
+      balancerVaultContract,
+      baseAssetContract,
+      trancheContract as unknown as ERC20,
+      { swapFee: swapFeeConvergentCurvePool, durationInSeconds }
+    );
 
   // seed market with initial yield asset
   await setupPrincipalTokenPool(
@@ -92,21 +92,19 @@ export async function deployTrancheAndMarket(
   );
 
   // now setup a yc market
-  const {
-    poolId: ycPoolId,
-    poolContract: ycPoolContract,
-  } = await setupInterestTokenPool(
-    signer,
-    trancheContract,
-    balancerVaultContract,
-    baseAssetContract,
-    weightedPoolFactory,
-    {
-      swapFee: swapFeeWeightedPool,
-      baseAssetIn: ytBaseAssetIn,
-      yieldAssetIn: ytYieldAssetIn,
-    }
-  );
+  const { poolId: ycPoolId, poolContract: ycPoolContract } =
+    await setupInterestTokenPool(
+      signer,
+      trancheContract,
+      balancerVaultContract,
+      baseAssetContract,
+      weightedPoolFactory,
+      {
+        swapFee: swapFeeWeightedPool,
+        baseAssetIn: ytBaseAssetIn,
+        yieldAssetIn: ytYieldAssetIn,
+      }
+    );
 
   return {
     trancheContract,

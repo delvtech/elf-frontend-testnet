@@ -1,7 +1,6 @@
+import { BasePool__factory } from "@elementfi/core-typechain";
 import { Provider } from "@ethersproject/providers";
 import { BigNumber, Signer } from "ethers";
-
-import { BasePool__factory } from "src/types/factories/BasePool__factory";
 
 /**
  * Returns the total supply for a pool.  All balancer v2 pools use an 18 decimal Balancer Pool Token

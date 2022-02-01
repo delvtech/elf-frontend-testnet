@@ -1,13 +1,7 @@
+import { ERC20, Tranche, USDC, Vault, WETH } from "@elementfi/core-typechain";
 import { Signer } from "ethers";
 import { printSpotPriceForPool } from "src/scripts/printSpotPriceForPool";
 import { printTokenInfoForPool } from "src/scripts/printTokenInfoForPool";
-
-import { ERC20 } from "src/types/ERC20";
-import { Tranche } from "src/types/Tranche";
-import { USDC } from "src/types/USDC";
-import { Vault } from "src/types/Vault";
-import { WETH } from "src/types/WETH";
-
 import { batchSwapIn } from "./batchSwapIn";
 import { initializeConvergentPool } from "./initializeConvergentPool";
 import { mintTrancheAssets } from "./mintTrancheAssets";
@@ -43,8 +37,8 @@ export async function setupPrincipalTokenPool(
 
   // trade some tranche assets for some base assets
   const swapReceipt = await batchSwapIn(
-    (trancheContract as unknown) as ERC20,
-    (baseAssetContract as unknown) as ERC20,
+    trancheContract as unknown as ERC20,
+    baseAssetContract as unknown as ERC20,
     poolId,
     sender,
     balancerVaultContract,

@@ -1,12 +1,10 @@
+import { Vault__factory } from "@elementfi/core-typechain";
 import {
   BigNumber,
   ContractTransaction,
   PayableOverrides,
   Signer,
 } from "ethers";
-
-import { Vault__factory } from "src/types/factories/Vault__factory";
-
 import { ONE_DAY_IN_SECONDS } from "src/time";
 
 const BALANCER_ETH_SENTINEL = "0x0000000000000000000000000000000000000000";

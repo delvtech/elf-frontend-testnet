@@ -1,13 +1,13 @@
-import { TokenInfo } from "@uniswap/token-lists";
+import {
+  ConvergentCurvePool__factory,
+  ConvergentPoolFactory,
+} from "@elementfi/core-typechain";
+import { PrincipalPoolTokenInfo, TokenTag } from "@elementfi/tokenlist";
+import { BigNumber } from "ethers";
 import hre from "hardhat";
 import zip from "lodash.zip";
-import { PrincipalPoolTokenInfo, TokenListTag } from "src/tokenlist/types";
-import { ConvergentCurvePool, ConvergentPoolFactory } from "src/types";
 
-import { ConvergentCurvePool__factory } from "src/types/factories/ConvergentCurvePool__factory";
-import { ConvergentPoolFactory__factory } from "src/types/factories/ConvergentPoolFactory__factory";
-
-export const provider = hre.ethers.provider;
+export const { provider } = hre.ethers;
 export async function getPrincipalPoolTokenInfos(
   chainId: number,
   ccPoolFactory: ConvergentPoolFactory,
@@ -58,7 +58,9 @@ export async function getPrincipalPoolTokenInfos(
     safePools.map((pool) => pool.expiration())
   );
 
-  const ccPoolTokensList: PrincipalPoolTokenInfo[] = zip<any>(
+  const ccPoolTokensList: PrincipalPoolTokenInfo[] = zip<
+    string | number | BigNumber
+  >(
     safePoolAddresses,
     poolSymbols,
     poolNames,
@@ -91,12 +93,12 @@ export async function getPrincipalPoolTokenInfos(
           bond: bondAddress as string,
           underlying: underlyingAddress as string,
           poolId: poolId as string,
-          unitSeconds: unitSeconds.toNumber() as number,
-          expiration: expiration.toNumber() as number,
+          unitSeconds: (unitSeconds as BigNumber).toNumber() as number,
+          expiration: (expiration as BigNumber).toNumber() as number,
           createdAtTimestamp: poolCreatedAt as number,
         },
         name: name as string,
-        tags: [TokenListTag.CCPOOL],
+        tags: [TokenTag.CCPOOL],
         // TODO: What logo do we want to show for ccpool tokens?
         // logoURI: ""
       };
