@@ -1,15 +1,12 @@
 import "@nomiclabs/hardhat-waffle";
 import "hardhat-tracer";
-import "module-alias/register";
-import "@typechain/hardhat";
-
 import {
+  extendEnvironment,
   HardhatUserConfig,
   task,
   types,
-  extendEnvironment,
 } from "hardhat/config";
-
+import "module-alias/register";
 import manipulateTokenBalances from "./src/scripts/manipulateTokenBalances";
 
 task("intervalMining", "Mine blocks on an interval")
@@ -49,22 +46,6 @@ extendEnvironment((hre) => {
 });
 
 const config: HardhatUserConfig = {
-  paths: {
-    sources: "src",
-  },
-  solidity: {
-    compilers: [
-      {
-        version: "0.5.12",
-      },
-      {
-        version: "0.7.1",
-      },
-      {
-        version: "0.8.0",
-      },
-    ],
-  },
   networks: {
     hardhat: {
       forking: {
