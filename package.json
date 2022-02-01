@@ -39,7 +39,7 @@
     "typescript": "^4.5.4"
   },
   "scripts": {
-    "build": "rm -rf artifacts src/types && npx hardhat compile",
+    "build": "rm -rf artifacts && npx hardhat compile",
     "build:tokenlist-testnet": "npx hardhat run src/tokenlist/localhost.ts --network localhost --no-compile",
     "deploy-contracts": "npx hardhat run src/scripts/deployLocalTestnet.ts --network localhost --no-compile && npm run build:tokenlist-testnet",
     "deploy-local-mainnet": "npx hardhat run src/scripts/deployLocalMainnet.ts --network localhost --no-compile --config hardhat.mainnet.config.ts",
