@@ -50,7 +50,7 @@ const config: HardhatUserConfig = {
     hardhat: {
       forking: {
         url: "https://eth-mainnet.alchemyapi.io/v2/kwjMP-X-Vajdk1ItCfU-56Uaq1wwhamK",
-        blockNumber: 14120000, // Feb-01-2022 12:05:45 PM +UTC
+        blockNumber: 14468156,
       },
       accounts: { count: 5 },
     },
