@@ -11,3 +11,4 @@ src/addresses/testnet.addresses.json
 src/addresses/testnet.symbolOverrides.json
 all-addresses.json
 .env.local
+.env
