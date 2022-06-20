@@ -1,7 +1,6 @@
 import "@nomiclabs/hardhat-waffle";
 // uncomment this to compile vyper contracts
 // import "@nomiclabs/hardhat-vyper";
-import "@typechain/hardhat";
 import { HardhatUserConfig, task, types } from "hardhat/config";
 import "module-alias/register";
 

@@ -1,15 +1,12 @@
 import "@nomiclabs/hardhat-waffle";
 import "hardhat-tracer";
-import "module-alias/register";
-import "@typechain/hardhat";
-
 import {
+  extendEnvironment,
   HardhatUserConfig,
   task,
   types,
-  extendEnvironment,
 } from "hardhat/config";
-
+import "module-alias/register";
 import manipulateTokenBalances from "./src/scripts/manipulateTokenBalances";
 
 task("intervalMining", "Mine blocks on an interval")
@@ -28,7 +25,7 @@ task("intervalMining", "Mine blocks on an interval")
   });
 
 task("autoMine", "Mine blocks on every transaction automatically").setAction(
-  async (taskArgs, hre) => {
+  async (_, hre) => {
     console.log("Enabling automine");
     await hre.ethers.provider.send("evm_setAutomine", [true]);
     console.log("Disabling interval");
@@ -49,27 +46,11 @@ extendEnvironment((hre) => {
 });
 
 const config: HardhatUserConfig = {
-  paths: {
-    sources: "src",
-  },
-  solidity: {
-    compilers: [
-      {
-        version: "0.5.12",
-      },
-      {
-        version: "0.7.1",
-      },
-      {
-        version: "0.8.0",
-      },
-    ],
-  },
   networks: {
     hardhat: {
       forking: {
         url: "https://eth-mainnet.alchemyapi.io/v2/kwjMP-X-Vajdk1ItCfU-56Uaq1wwhamK",
-        blockNumber: 13880010, // update liberally to CURRENT_BLOCK - 1 DAY
+        blockNumber: 14468156,
       },
       accounts: { count: 5 },
     },
